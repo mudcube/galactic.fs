@@ -1,3 +1,5 @@
+WIP
+
 # galactic.fs(...)
 
 #### *Promise based Syncable File Store for Javascript*
