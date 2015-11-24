@@ -186,19 +186,6 @@ fs.delete('/path/to/folder/').then(function(/* empty */) { //- from fs.rmdir
 });
 ```
 
-# API: Settings
-
-## fs.defaults
-```js
-fs.defaults.into = string;
-fs.defaults.depth = number;
-fs.defaults.as = string;
-fs.defaults.overwrite = boolean;
-fs.defaults.append = boolean;
-fs.defaults.filter = function;
-fs.defaults.sort = function;
-```
-
 # API: Classes
 
 ## fs.File
