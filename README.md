@@ -17,6 +17,7 @@ var fs = new galactic.fs('MyStorageId'); // creates filestore with specified nam
 /* read entry(s) */
 fs.read('/path/to/file'); // read file
 fs.read('/path/to/folder/'); // read folder
+fs.read('/path*'); // read all matches
 
 /* write entry(s) */
 fs.write('/path/to/file'); // create empty file
@@ -28,15 +29,18 @@ fs.write('/path/to/folder/', data); // create folder with content
 fs.copy('/path/from/file', '/path/to/file'); // copy file contents
 fs.copy('/path/from/file', '/path/to/folder/'); // copy file into folder
 fs.copy('/path/from/folder/', '/path/to/folder/'); // copy folder contents
+fs.copy('/path*', '/path/to/folder/'); // copy all matches into folder
 
 /* move entry(s) and delete original(s) */
 fs.move('/path/from/file', '/path/to/file'); // move file contents
 fs.move('/path/from/file', '/path/to/folder/'); // move file into folder
 fs.move('/path/from/folder/', '/path/to/folder/'); // move folder contents
+fs.move('/path*', '/path/to/folder/'); // move all matches into folder
 
 /* delete entry(s) */
 fs.delete('/path/to/file'); // delete file
 fs.delete('/path/to/folder/'); // delete folder and its content
+fs.delete('/path*'); // delete all matches
 ```
 
 ## API: Advanced Usage
@@ -45,8 +49,7 @@ fs.delete('/path/to/folder/'); // delete folder and its content
 
 ```js
 var fs = new galactic.fs('MyStorageId', {
-	adapter: 'idb', // 'idb' | 'leveldb' | 'fsapi' - attempts to use a specific adapter
-	defaults: someDefaults // see fs.defaults for details
+	adapter: 'idb' // 'idb' | 'leveldb' | 'fsapi' - use a specific adapter [defaults to best match]
 });
 ```
 
@@ -197,14 +200,15 @@ fs.File
 	.isFile; // always true on files
 	.path; // full path to this file
 	.name; // file name
-	.type; // file mimetype
-	.size; // file size in bytes
-	.digest; // file fingerprint ex. 'md5-{hash}'
 	.doc; // pouchdb document related to parent folder (not available w/ FilesystemAPI)
+
+	.digest; // file fingerprint ex. 'md5-{hash}'
+	.size; // file size in bytes
+	.type; // file mimetype
 
 	/* methods */
 	// promise to retrieve file data as specific type
-	// _as can be 'buffer' | 'blob' | 'json' | 'url' | 'string' [default 'blob']
+	// _as can be 'buffer' | 'blob' | 'json' | 'url' | 'string' | 'entry' [default 'blob']
 	.get(_as);
 ```
 
@@ -221,23 +225,27 @@ fs.Folder
 
 	/* methods */
 	// promise to retrieve data for entries
-	// _as can be 'buffer' | 'blob' | 'json' | 'url' | 'string' [default 'blob']
+	// _as can be 'buffer' | 'blob' | 'json' | 'url' | 'string' | 'entry' [default 'blob']
 	// _into can be 'array' | 'tree' [default 'tree']
 	.get(_as, _into);
 
 	// iterates over entries with promises
 	.forEach(function(file) {
-		return file.get('buffer').then(function(buffer) { // next value wont be reached until promise resolves
-		
+		return file.get('buffer').then(function(buffer) {
+			// forEach wont progress to next file until promise resolves
 		});
 	});
+```
 
-// Examples of what .get() would provide with :
-
+```js
+/* folder.get('entry', 'array'); */
 array [
 	file, folder, ...
 ]
+```
 
+```js
+/* folder.get('entry', 'tree'); */
 tree {
 	someFileName: file,
 	anotherFileName: file,
