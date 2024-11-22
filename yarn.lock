@@ -6,12 +6,12 @@ __metadata:
   cacheKey: 10c0
 
 "@adviser/cement@npm:^0.2.36":
-  version: 0.2.36
-  resolution: "@adviser/cement@npm:0.2.36"
+  version: 0.2.37
+  resolution: "@adviser/cement@npm:0.2.37"
   dependencies:
     ts-essentials: "npm:^10.0.2"
     yaml: "npm:^2.5.1"
-  checksum: 10c0/b06a5d91d85151f012d91c9c49446164780c5de3a1b88ed6ad859d01d69c216e1e9d176da400c6f97943a07874b0146a5ae46362fad2d9aa01c9320720bec0d0
+  checksum: 10c0/6810988a37f1c2853ace5030b49268773e0f836fa050617359f967ae993ef144bb22d5620fa68e26dfbf9db9a37cf95a2ec876d616690d117a46ec2f57ca6214
   languageName: node
   linkType: hard
 
@@ -1596,6 +1596,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"galactic-fs@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "galactic-fs@workspace:."
+  dependencies:
+    "@fireproof/connect": "npm:^0.17.7"
+    "@fireproof/core": "npm:^0.19.111"
+    "@sveltejs/vite-plugin-svelte": "npm:^4.0.1"
+    svelte: "npm:^5.2.7"
+    vite: "npm:^5.4.11"
+    vitest: "npm:^2.1.5"
+  languageName: unknown
+  linkType: soft
+
 "get-tsconfig@npm:^4.7.0":
   version: 4.8.1
   resolution: "get-tsconfig@npm:4.8.1"
@@ -2659,19 +2672,6 @@ __metadata:
   checksum: 10c0/789885d3f852ed7ca45bed14194a2ac7a2cf16b6b62b54f691c79e27d5557d31a2d612d3680c26c527a1957e0bd6811806ddd765e0dae589404cf24544ff2838
   languageName: node
   linkType: hard
-
-"root-workspace-0b6124@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    "@fireproof/connect": "npm:^0.17.7"
-    "@fireproof/core": "npm:^0.19.111"
-    "@sveltejs/vite-plugin-svelte": "npm:^4.0.1"
-    svelte: "npm:^5.2.7"
-    vite: "npm:^5.4.11"
-    vitest: "npm:^2.1.5"
-  languageName: unknown
-  linkType: soft
 
 "sade@npm:^1.8.1":
   version: 1.8.1
