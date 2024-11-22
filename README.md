@@ -1,5 +1,3 @@
-WIP
-
 # GalacticFS
 
 Promise-based File Store API built on top of [Fireproof](https://fireproof.storage/).
